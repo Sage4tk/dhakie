@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# Time Repetition Flashcard App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Time Repetition Flashcard App! This project aims to enhance learning and memory retention using scientifically-backed spaced repetition techniques. Perfect for students, professionals, and lifelong learners, this app schedules reviews at optimal intervals to ensure maximum retention and efficient study sessions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Spaced Repetition Algorithm:** Implements a scientifically-backed algorithm to determine the best times to review each flashcard based on user performance.
+- **Customizable Flashcard Decks:** Users can create, edit, and organize flashcard decks for any subject. Supports images, audio, and rich text.
+- **Progress Tracking:** Provides detailed statistics and visualizations of user progress, including review schedules, success rates, and study streaks.
+- **Intelligent Notifications:** Sends reminders to review flashcards, helping users stay on track without feeling overwhelmed.
+- **Multi-Device Synchronization:** Syncs user progress across multiple devices, allowing access to flashcards anytime, anywhere.
+- **Offline Mode:** Enables studying without an internet connection, with automatic sync when back online.
+- **Community Sharing:** Allows users to explore and download decks created by others, and share their own decks with the community.
+- **Custom Study Sessions:** Users can tailor study sessions by selecting specific decks, setting study goals, and adjusting review frequencies.
+- **Adaptive Learning:** Adapts to the user's learning pace and knowledge level for a personalized study experience.
