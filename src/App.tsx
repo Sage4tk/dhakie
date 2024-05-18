@@ -1,6 +1,4 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import { auth } from "./lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import { Provider } from "react-redux";
 import { store } from "./features/store";
 
