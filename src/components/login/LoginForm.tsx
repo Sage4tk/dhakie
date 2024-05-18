@@ -13,6 +13,8 @@ import { Separator } from "../ui/separator";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import GoogleIcon from "@/assets/icons/google.svg";
 import { Link } from "react-router-dom";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import { ExclamationTriangleIcon } from "@radix-ui/react-icons"
 
 
 const login_form = z.object({
@@ -24,6 +26,10 @@ const LoginForm:React.FC = () => {
 
     /** STATES **/
     const [loading, setLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<{
+        title: string,
+        description: string
+    } | null>(null);
 
     // form resolver
     const form_checker = useForm<z.infer<typeof login_form>>({
@@ -36,6 +42,9 @@ const LoginForm:React.FC = () => {
 
     // login with firebase email and password
     const login = async (event: z.infer<typeof login_form>):Promise<void> => {
+        // clear error messag if any
+        if (errorMessage) setErrorMessage(null);
+
         // set loading to true to cover login button
         setLoading(true);
 
@@ -43,8 +52,13 @@ const LoginForm:React.FC = () => {
             // call login function built in with firebase
             await signInWithEmailAndPassword(auth,event.email, event.password);
         } catch (err) {
-            if (err instanceof FirebaseError) {
 
+            
+            if (err instanceof FirebaseError) {
+                setErrorMessage({
+                    title:"ERROR",
+                    description: err.code
+                })
             }
             
         }
@@ -52,12 +66,45 @@ const LoginForm:React.FC = () => {
         setLoading(false);
     }
 
+    // singin with google
+    const google_auth = async ():Promise<void> => {
+
+        // turn off ui to prevent bugs 
+        setLoading(true);
+
+        // clear error message if it exists
+        if (errorMessage) setErrorMessage(null);
+
+        try {
+            
+        } catch (err) {
+            if (err instanceof FirebaseError) {
+                setErrorMessage({
+                    title:"ERROR",
+                    description: err.code
+                })
+            }
+        }
+
+        setLoading(false);
+    }
+
     return (
-        <Card className="w-[300px]">
+        <Card className="w-full md:w-[320px]">
             <CardHeader>
                 <CardTitle className="font-bold tracking-tight">Sign In</CardTitle>
             </CardHeader> 
             <CardContent>
+
+                {errorMessage && (
+                    <Alert variant="destructive" className="mb-2">
+                        <ExclamationTriangleIcon />
+                        <AlertTitle>{errorMessage.title}</AlertTitle>
+                        <AlertDescription>
+                            {errorMessage.description}
+                        </AlertDescription>
+                    </Alert>
+                )}
 
                 <Form {...form_checker}>
                     <form className="space-y-8" onSubmit={form_checker.handleSubmit(login)}>

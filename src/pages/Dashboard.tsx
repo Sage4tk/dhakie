@@ -1,3 +1,6 @@
+import AddButton from "@/components/shared/AddButton";
+import Container from "@/components/shared/Container";
+import Nav from "@/components/shared/Nav";
 import { Button } from "@/components/ui/button";
 import AuthChecker from "@/components/wrapper/AuthChecker";
 import { auth } from "@/lib/firebase";
@@ -11,10 +14,25 @@ const Dashboard:React.FC = () => {
 
     return (
         <AuthChecker>
-        <div className="h-screen w-screen flex items-center justify-center flex-col space-y-6">
-            <h1 className="text-xl font-bold">DASHBOARD SCREEN</h1>
-            <Button onClick={logout}>LOGOUT</Button>
-        </div>
+            <div>
+                <Nav />
+                
+
+                <Container>
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 py-4 gap-4">
+
+                    <AddButton onClick={() => {}} />
+                    <AddButton onClick={() => {}} />
+                    <div className="overflow-hiddens">
+                        <p className="whitespace-normal">
+                        GNAGMODE ASIDJASIDNASdaso djsaodnasodnasodasasiodnasi dnasidsanasdasudbsaudsabudasbudas asidasidbasidbasidbsai asdsadsadas  asdsadsadasdasd
+                        </p>
+                    </div>
+
+                </div>
+                </Container>
+                
+            </div>
         </AuthChecker>
     )
 }

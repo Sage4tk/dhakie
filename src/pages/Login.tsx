@@ -21,7 +21,7 @@ const Login:React.FC = () => {
     }, [user.user]);
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center">
+        <div className="w-screen h-screen flex items-center justify-center px-5">
             <LoginForm />
         </div>
     )
