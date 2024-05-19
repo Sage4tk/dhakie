@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Container from "./Container";
 import { RootState } from "@/features/store";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
@@ -33,6 +33,7 @@ const Nav:React.FC = () => {
                         <DropdownMenuTrigger asChild>
 
                             <Avatar className="cursor-pointer">
+                                {user.photoURL && <AvatarImage src={user.photoURL} />}
                                 <AvatarFallback>{user.email ? user.email[0].toUpperCase() : "U"}</AvatarFallback>
                             </Avatar>
 
