@@ -6,11 +6,18 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { LogOut, User } from "lucide-react";
 
 import { Avatar as AVATAR } from "@radix-ui/react-avatar";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 const Nav:React.FC = () => {
 
     /** STATES **/
     const { user } = useSelector((state:RootState) => state.user);
+
+    // logout user out function
+    const logout = async ():Promise<void> => {
+        await signOut(auth);
+    }
 
     if (!user) return (null);
 
@@ -27,7 +34,7 @@ const Nav:React.FC = () => {
 
                         <DropdownMenuTrigger asChild>
 
-                            <Avatar>
+                            <Avatar className="cursor-pointer">
                                 <AvatarFallback>{user.email ? user.email[0].toUpperCase() : "U"}</AvatarFallback>
                             </Avatar>
 
@@ -35,17 +42,17 @@ const Nav:React.FC = () => {
 
                         <DropdownMenuContent className="">
 
-                            <DropdownMenuLabel>
+                            <DropdownMenuLabel className="cursor-default">
                                 {user.email}
                             </DropdownMenuLabel>
 
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="flex justify-between items-center">
+                            <DropdownMenuItem className="flex justify-between items-center cursor-pointer">
                                 Profile
                                 <User className="h-auto w-4" />
                             </DropdownMenuItem>
 
-                            <DropdownMenuItem className="flex justify-between items-center">
+                            <DropdownMenuItem onClick={logout} className="flex justify-between items-center cursor-pointer">
                                 Logout
                                 <LogOut className="h-auto w-4" />
                             </DropdownMenuItem>
