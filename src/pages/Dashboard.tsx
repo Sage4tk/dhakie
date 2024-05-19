@@ -1,16 +1,9 @@
 import AddButton from "@/components/shared/AddButton";
 import Container from "@/components/shared/Container";
 import Nav from "@/components/shared/Nav";
-import { Button } from "@/components/ui/button";
 import AuthChecker from "@/components/wrapper/AuthChecker";
-import { auth } from "@/lib/firebase";
-import { signOut } from "firebase/auth";
 
 const Dashboard:React.FC = () => {
-
-    const logout = async ():Promise<void> => {
-        await signOut(auth);
-    }
 
     return (
         <AuthChecker>

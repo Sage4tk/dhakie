@@ -4,8 +4,6 @@ import Container from "./Container";
 import { RootState } from "@/features/store";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { LogOut, User } from "lucide-react";
-
-import { Avatar as AVATAR } from "@radix-ui/react-avatar";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
