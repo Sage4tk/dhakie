@@ -6,7 +6,7 @@ const AddButton:React.FC<{
     onClick
 }) => {
     return (
-        <button className="font-bold text-white text-4xl flex items-center justify-center bg-primary rounded-lg" onClick={onClick}>
+        <button className="font-bold border  text-3xl hover:shadow hover:scale-[1.01] active:scale-100 flex items-center justify-center rounded-lg" onClick={onClick}>
             +
         </button>
     )

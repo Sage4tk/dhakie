@@ -6,6 +6,7 @@ import { store } from "./features/store";
 import Login from "./pages/Login";
 import BaseWrapper from "./components/wrapper/BaseWrapper";
 import Dashboard from "./pages/Dashboard";
+import Signup from "./pages/Singup";
 
 
 const App:React.FC = () => {
@@ -20,6 +21,8 @@ const App:React.FC = () => {
                     <Routes>
 
                         <Route path="/" index element={<Login />} />
+
+                        <Route path="/signup" element={<Signup />} />
 
                         <Route path="/dashboard" element={<Dashboard />}  />
 

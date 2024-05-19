@@ -5,12 +5,11 @@ import { z } from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GOOGLE_PROVIDER, auth } from "@/lib/firebase";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import { Separator } from "../ui/separator";
-// import { signInWithEmailAndPassword } from "firebase/auth";
 import GoogleIcon from "@/assets/icons/google.svg";
 import { Link } from "react-router-dom";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -76,8 +75,12 @@ const LoginForm:React.FC = () => {
         if (errorMessage) setErrorMessage(null);
 
         try {
-            
+
+            // CALL THE GOOGLE AUTH PROVIDER TO open a window
+            await signInWithPopup(auth, GOOGLE_PROVIDER);
         } catch (err) {
+
+            // DISPLAY ON SCREEN THE ERROR
             if (err instanceof FirebaseError) {
                 setErrorMessage({
                     title:"ERROR",
@@ -90,7 +93,7 @@ const LoginForm:React.FC = () => {
     }
 
     return (
-        <Card className="w-full md:w-[320px]">
+        <Card className="w-full md:w-[360px]">
             <CardHeader>
                 <CardTitle className="font-bold tracking-tight">Sign In</CardTitle>
             </CardHeader> 
@@ -151,7 +154,7 @@ const LoginForm:React.FC = () => {
                 </div>
 
                 <div className="mb-4">
-                    <Button className="w-full flex items-center" variant="outline">
+                    <Button disabled={loading} onClick={google_auth} className="w-full flex items-center" variant="outline">
                         <img src={GoogleIcon} className="h-auto w-4" />
                         <span className="flex-grow">Signin with Google</span>
                     </Button>
@@ -159,7 +162,7 @@ const LoginForm:React.FC = () => {
 
                 <div className="text-sm text-center">
                     <span>Are you new?  </span>
-                    <Link className="underline font-semibold" to="Sign Up">Sign Up</Link>
+                    <Link className="underline font-semibold" to="/signup">Sign Up</Link>
                 </div>
 
             </CardContent>
