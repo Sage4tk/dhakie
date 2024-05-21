@@ -1,3 +1,5 @@
+import { useState } from "react"
+import CreateDeck from "./CreateDeck"
 
 
 const AddButton:React.FC<{
@@ -5,10 +7,16 @@ const AddButton:React.FC<{
 }> = ({
     onClick
 }) => {
+
+    /** STATES **/
+    const [open, setOpen] = useState<boolean>(false);
+
     return (
-        <button className="font-bold border  text-3xl hover:shadow hover:scale-[1.01] active:scale-100 flex items-center justify-center rounded-lg" onClick={onClick}>
-            +
-        </button>
+        <CreateDeck open={open} setOpen={setOpen}>
+            <button className="font-bold border  text-3xl hover:shadow hover:scale-[1.01] active:scale-100 flex items-center justify-center rounded-lg" onClick={onClick}>
+                +
+            </button>
+        </CreateDeck>
     )
 }
 
