@@ -17,10 +17,10 @@ const AuthChecker:React.FC<IComponentBase> = ({
 
     // use effect to check the user session and logout the user if nothing was seen!
     useEffect(() => {
-        if (!user.user) {
+        if (!user.user && !user.loading) {
             navigate("/")            
         }
-    }, [user.user]);
+    }, [user.user, user.loading]);
     
     return (
         <>

@@ -14,6 +14,12 @@ const BaseWrapper:React.FC<IComponentBase> = ({
 
     onAuthStateChanged(auth, (user) => {
         dispatch(SetUserReducer(user));
+
+        // set uid to localstorage
+        if (user) localStorage.setItem("uid", user.uid);
+
+        // remove uid if logged out
+        if (!user) localStorage.removeItem("uid");
     })
 
     return (

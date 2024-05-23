@@ -8,11 +8,17 @@ import BaseWrapper from "./components/wrapper/BaseWrapper";
 import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/Singup";
 import DeckPage from "./pages/deck/DeckPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+
+const query_client = new QueryClient();
 
 const App:React.FC = () => {
 
     return (
+
+        <QueryClientProvider client={query_client}>
+
         <Provider store={store}>
 
             <BaseWrapper>
@@ -36,6 +42,8 @@ const App:React.FC = () => {
             </BaseWrapper>
 
         </Provider>
+
+        </QueryClientProvider>
     )
 }
 

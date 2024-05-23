@@ -3,7 +3,8 @@ import { IUserSlice } from "./states";
 import { User } from "firebase/auth";
 
 export const initialState:IUserSlice = {
-    user:null
+    user: null,
+    loading: true
 }
 
 export const UserSlice = createSlice({
@@ -11,7 +12,8 @@ export const UserSlice = createSlice({
     initialState,
     reducers: {
         SetUserReducer: (state, actions:PayloadAction<User | null>) => {
-            state.user = actions.payload
+            state.user = actions.payload,
+            state.loading = false;
         }
 
     }
