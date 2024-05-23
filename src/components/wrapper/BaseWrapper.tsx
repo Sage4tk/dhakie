@@ -4,6 +4,7 @@ import { auth } from "@/lib/firebase";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/features/store";
 import { SetUserReducer } from "@/features/slice/UserSlice";
+import { Toaster } from "../ui/toaster";
 
 const BaseWrapper:React.FC<IComponentBase> = ({
     children
@@ -18,6 +19,7 @@ const BaseWrapper:React.FC<IComponentBase> = ({
     return (
         <div>
             {children}
+            <Toaster />
         </div>
     )
 }

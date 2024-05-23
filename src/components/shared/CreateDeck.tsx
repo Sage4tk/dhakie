@@ -7,7 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { Loader, LoaderCircle } from "lucide-react";
+import {  LoaderCircle } from "lucide-react";
+import { Timestamp, doc, setDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { v4 } from "uuid";
+import { useSelector } from "react-redux";
+import { RootState } from "@/features/store";
+import { useToast } from "../ui/use-toast";
 
 interface ICreateDeckProps extends IComponentBase {
     open: boolean,
@@ -27,8 +33,10 @@ const CreateDeck:React.FC<ICreateDeckProps> = ({
 
     /** STATES **/
     const [loading, setLoading] = useState<boolean>(false);
+    const { user } = useSelector((state:RootState) => state.user);
 
     /** HOOKS **/
+    const { toast } = useToast();
     const form = useForm<z.infer<typeof create_deck>>({
         defaultValues: {
             title: "",
@@ -40,21 +48,43 @@ const CreateDeck:React.FC<ICreateDeckProps> = ({
     /** FUNCTIONS **/
 
     // submit deck to firestore after checking
-    const submit_firestore = async ():Promise<void> => {
+    const submit_firestore = async (event:z.infer<typeof create_deck>):Promise<void> => {
 
         //block UI
         setLoading(true);
 
         try {
-            // setOpen(false)
+
+            // if somewhore user is not logged in then throw (an unauthenticated user cant see this screen)
+            if (!user) throw null;
+
+            await setDoc(doc(db, "decks", v4()), {
+                title: event.title,
+                description: event.description,
+                createdAt: Timestamp.now(),
+                userId: user.uid
+            });
+            
+            toast({
+                title: "Deck created!",
+                description: `${event.title} has been created!`
+            });
+            
+            setOpen(false);
+
+
         } catch (err) {
+
+            toast({
+                title: "Oops something went wrong!",
+                description: "Please try again",
+                variant: "destructive"
+            })
 
         }
 
         // unblock UI AFTER
-       setTimeout(() => {
-        setLoading(false)
-       },3000);
+       setLoading(false);
     }
 
     // OVERRIDE OUTCLOSING of the dialouge box to prevent closing when loading is true

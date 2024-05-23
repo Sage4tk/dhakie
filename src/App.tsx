@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import BaseWrapper from "./components/wrapper/BaseWrapper";
 import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/Singup";
+import DeckPage from "./pages/deck/DeckPage";
 
 
 const App:React.FC = () => {
@@ -25,6 +26,8 @@ const App:React.FC = () => {
                         <Route path="/signup" element={<Signup />} />
 
                         <Route path="/dashboard" element={<Dashboard />}  />
+
+                        <Route path="/deck/:id" element={<DeckPage />} />
 
                     </Routes>
 
