@@ -2,12 +2,12 @@ import { IDeck } from "@/features/slice/states";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const AllDecks = async (id:string):Promise<IDeck[]> => {
+const AllDecks = async ():Promise<IDeck[]> => {
     try {
 
-        if (!id) throw null;
+        // if (!id) throw null;
 
-        const findDeck = await getDocs(query(collection(db, "decks"), where("userId", "==", id)))
+        const findDeck = await getDocs(query(collection(db, "decks"), where("userId", "==", localStorage.getItem("uid"))))
 
         if (findDeck.empty) throw null;
 

@@ -1,4 +1,5 @@
 import { User } from "firebase/auth";
+import { Timestamp } from "firebase/firestore";
 
 export interface IUserSlice {
     user: User | null,
@@ -9,6 +10,6 @@ export interface IDeck {
     id: string,
     title: string,
     description: string,
-    createAt: string,
+    createdAt: Timestamp,
     userId: string
 }

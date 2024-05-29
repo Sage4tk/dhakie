@@ -4,7 +4,7 @@ import AuthChecker from "@/components/wrapper/AuthChecker";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import FetchDeck from "@/functions/firestore/FetchDeck";
-import { Button } from "@/components/ui/button";
+import DeckInfo from "@/components/focused_deck/DeckInfo";
 
 const DeckPage:React.FC = () => {
 
@@ -12,10 +12,11 @@ const DeckPage:React.FC = () => {
 
     /** HOOKS **/
     const { id } = useParams();
-    const { data, refetch } = useQuery({
+    const { data } = useQuery({
         queryKey: ["focused_deck"],
         queryFn: () => FetchDeck(id || "")
     });
+
 
     return (
         <AuthChecker>
@@ -25,16 +26,21 @@ const DeckPage:React.FC = () => {
                 <Nav />
 
                 <Container>
-                    
-                    <div>
 
-                        {data?.id}
+                    <div className="py-8">
+                    
+                    {
+                        data && (
+                            <>
+
+                                <DeckInfo {...data} />
+
+                            </>
+                        )
+                    }
+
 
                     </div>
-
-                    <Button onClick={() => refetch()}>
-                        REFRECHT
-                    </Button>
 
                 </Container>
 

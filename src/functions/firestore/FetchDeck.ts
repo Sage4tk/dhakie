@@ -15,7 +15,7 @@ const FetchDeck = async (id:string):Promise<IDeck | null> => {
 
         return {
             id: findDeck.docs[0].id,
-            ...findDeck.docs[0].data
+            ...findDeck.docs[0].data()
         } as IDeck;
 
     } catch (err) {

@@ -6,6 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { LogOut, User } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import { Link } from "react-router-dom";
 
 const Nav:React.FC = () => {
 
@@ -26,7 +27,7 @@ const Nav:React.FC = () => {
 
                 <div className="flex justify-between items-center">
 
-                    <h1 className="font-bold">DHAKIE</h1>
+                    <Link to="/" className="font-bold">DHAKIE</Link>
 
                     <DropdownMenu>
 

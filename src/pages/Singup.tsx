@@ -14,8 +14,14 @@ const Signup:React.FC = () => {
 
     // redirect the user to dashboard if a auth session is pressent
     useEffect(() => {
-        if (user) navigate("/dashboard")
+        
+        if (localStorage.getItem("uid")) navigate("/dashboard");
+
+        if (user) navigate("/dashboard");
+
     }, [user])
+
+    
 
     return (
         <div className="w-screen h-screen flex items-center justify-center p-5 py-10">

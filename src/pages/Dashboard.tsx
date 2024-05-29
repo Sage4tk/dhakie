@@ -14,7 +14,7 @@ const Dashboard:React.FC = () => {
     
     const { data } = useQuery({
         queryKey: ["deck_list"],
-        queryFn: () => AllDecks(user?.uid || "")
+        queryFn: () => AllDecks()
     });
 
     return (
